@@ -1,15 +1,79 @@
+<!-- eslint-disable vue/require-v-for-key -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="todoList">
+  <h1>{{ title }}</h1>
+  <div v-if="!isEditing">
+  <input @keyup.enter="HandleClick" type="text" v-model="todo">
+  <input type="submit" value="Ajouter" @click="HandleClick">
+</div>
+
+  <div v-else>
+  <input type="text" @keyup.enter="HandleClick" v-model="todo">
+  <input type="submit" value="Update" @click="updateTodo">
+</div>
+
+  <div>
+    <h3>Ma liste :</h3>
+    <ol>
+      <li  v-for="(todo, index) of todos" :key="index">
+        {{ todo }} 
+        <button @click="editTodo(index, todo)">Modifier</button>
+        <button @click="deleteTodo(index)">Supprimer</button>
+        <select name="urgence" id="urgence">
+          <option value="ttu">Trés urgent</option>
+          <option value="u">Urgent</option>
+          <option value="nonUrgent">Non urgent</option>
+        </select>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<inscription-user/>
+
+  
+
+   
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import InscriptionUser from './components/Inscription-user.vue';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components:{
+    InscriptionUser
+  },
+   data(){
+    return{
+      isEditing : false,
+      title : "Ma première application en Vue.js",
+      todos : ["got to te market"],
+      todo :"",
+      selectedIndex : null,
+       }
+  },
+  methods:{
+    HandleClick(){      
+      this.todos.push(this.todo);
+      this.todo = "";
+    },
+    editTodo(index, todo){
+      this.todo = todo;
+      this.selectedIndex = index;
+      this.isEditing = true;
+
+    },
+    deleteTodo(index){
+      this.todos.splice(index, 1);
+
+    },
+    updateTodo(){
+      this.todos.splice(this.selectedIndex, 1, this.todo);
+      this.isEditing =false;
+      this.todo="";
+    }
   }
 }
 </script>
@@ -22,5 +86,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+h1{
+  color: blueviolet;
+  font-size: 4rem;
 }
 </style>
