@@ -15,4 +15,13 @@ export default {
 </script>
 
 <style>
+    header{
+        background-color: cornflowerblue;
+        padding: 50px;
+        height: auto;
+        text-align: center;
+        color: black;
+        font-size: 20px;
+        margin: 0
+    }
 </style>
