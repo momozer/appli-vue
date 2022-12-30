@@ -3,11 +3,15 @@
     <div class="users">
         <div class="nom">
             <label for="nom">Nom :</label>
-            <input type="text">
+            <input type="text" placeholder="NOM">
         </div>
         <div class="prenom">
             <label for="prenom">Prénom:</label>
-            <input type="text">
+            <input type="text" placeholder="Prénom">
+        </div>
+        <div class="email">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="email@mail.com">
         </div>
         <button>S'inscrire</button>
     </div>
