@@ -1,5 +1,6 @@
 <!-- eslint-disable vue/require-v-for-key -->
 <template>
+ <HeaderVue/>
   <div class="todoList">
   <h1>{{ title }}</h1>
   <div v-if="!isEditing">
@@ -39,11 +40,13 @@
 
 <script>
 import InscriptionUser from './components/Inscription-user.vue';
+import HeaderVue from './components/Header-component.vue';
 
 export default {
   name: 'App',
   components:{
-    InscriptionUser
+    InscriptionUser,
+    HeaderVue
   },
    data(){
     return{
